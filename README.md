@@ -67,8 +67,11 @@ https://developer.qualcomm.com/sites/default/files/docs/snpe/overview.html
 
 ### Model Conversion to DLC using SNPE on Host System
 1. Follow the instructions in link given below to train your own model on host
+   
    https://github.com/cfzd/Ultra-Fast-Lane-Detection
+   
    `Note: Must recommended to use GPU Server for model training`
+
 2. Clone the project and run below command to convert the trained PyTorch model to ONNX model on host.
    ```sh
    ubuntu@ubuntu $ cd <PROJECT_PATH>/models

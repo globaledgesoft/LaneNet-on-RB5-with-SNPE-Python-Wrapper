@@ -66,18 +66,27 @@ https://developer.qualcomm.com/sites/default/files/docs/snpe/overview.html
 
 
 ### Model Conversion to DLC using SNPE on Host System
-1.	Before running the steps given below, make sure that SNPE SDK & ONNX Runtime has been installed on the host-system.
-2.	Run below command from <SNPE_ROOT> for Initializing the SNPE SDK for the ONNX Environment
+1. Follow the instructions in link given below to train your own model on host
+   https://github.com/cfzd/Ultra-Fast-Lane-Detection
+   `Note: Must recommended to use GPU Server for model training`
+2. Clone the project and run below command to convert the trained PyTorch model to ONNX model on host.
+   ```sh
+   ubuntu@ubuntu $ cd <PROJECT_PATH>/models
+   ubuntu@ubuntu $ python3 pytorch_to_onnx.py
+   ```
+3. Make sure that for performing the above steps Pytorch & ONNX is installed on your host system.
+4. Before running the steps given below, make sure that SNPE SDK & ONNX Runtime has been installed on the host-system.
+5. Run below command from <SNPE_ROOT> for Initializing the SNPE SDK for the ONNX Environment
 ```sh
 ubuntu@ubuntu $ source bin/envsetup.sh -o <ONNX_DIR>
 ```
-`Note: <ONNX_DIR> is path to python package path of ONNX package.`
+`Note: <ONNX_DIR> is path to python package path of ONNX package.
 
-3.	Run the command given below for converting the model to DLC
+6. Run the command given below for converting the model to DLC
 ```sh
 ubuntu@ubuntu $ snpe-onnx-to-dlc --input_network lanenet.onnx --input_dim input.1 1,3,288,800 –output_path lanenet.dlc
 ```
-4.	Copy the converted lanenet.dlc inside the RB5 in <PROJECT_PATH>
+7.	Copy the converted lanenet.dlc inside the RB5 in <PROJECT_PATH>
 ```sh
 ubuntu@ubuntu $ adb push lanenet.dlc <PROJECT_PATH_ON_RB5>/models
 ```
